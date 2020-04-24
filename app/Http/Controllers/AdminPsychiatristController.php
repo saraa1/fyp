@@ -1,15 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Photo;
-use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Illuminate\Support\Facades\Auth;
 
-class AdminPatientController extends Controller
+class AdminPsychiatristController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +18,9 @@ class AdminPatientController extends Controller
     public function index()
     {
         //
-        $patients = User::where('role_id',2)->get();
-        return view ('admin.patient.index',compact('patients'));
+        $psych = User::where('role_id',1)->get();
+        return view('admin.psychiatrist.index',compact('psych'));
+
     }
 
     /**
@@ -31,8 +31,7 @@ class AdminPatientController extends Controller
     public function create()
     {
         //
-       $role= Role::lists('name','id')->all();
-       return view('admin.patient.create',compact('role'));
+        return view('admin.psychiatrist.create');
     }
 
     /**
@@ -53,9 +52,9 @@ class AdminPatientController extends Controller
             $input['photo_id']=$photo->id;
         }
 
-       User::create($input);
+        User::create($input);
 
-        return redirect('/admin/patient');
+        return redirect('/admin/psychiatrist');
     }
 
     /**
@@ -79,8 +78,7 @@ class AdminPatientController extends Controller
     {
         //
         $user= User::find($id);
-        return view('admin.patient.edit',compact('user'));
-
+        return view('admin.psychiatrist.edit',compact('user'));
     }
 
     /**
@@ -93,21 +91,18 @@ class AdminPatientController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $input=$request->all();
+        if($file=$request->file('photo_id')){
 
-       $input=$request->all();
-       if($file=$request->file('photo_id')){
+            $name= $file->getClientOriginalName();
+            $file->move('images',$name);
+            $photo=Photo::create(['path'=>$name]);
+            $input['photo_id']=$photo->id;
+        }
 
-           $name= $file->getClientOriginalName();
-           $file->move('images',$name);
-           $photo=Photo::create(['path'=>$name]);
-           $input['photo_id']=$photo->id;
-       }
+        $user=User::find($id)->update($input);
 
-       $user=User::find($id)->update($input);
-
-       return redirect('/admin/patient');
-
-
+        return redirect('admin/psychiatrist');
     }
 
     /**
@@ -125,6 +120,6 @@ class AdminPatientController extends Controller
             unlink(public_path().$user->photo->path);
         }
         $user->delete();
-        return redirect('/admin/patient');
+        return redirect('admin/psychiatrist');
     }
 }

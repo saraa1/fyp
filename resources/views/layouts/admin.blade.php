@@ -15,20 +15,34 @@
 <div class="wrapper d-flex align-items-stretch">
     <nav id="sidebar">
         <div class="p-4 pt-5">
-           @yield('picture')
-                       <ul class="list-unstyled components mb-5">
+{{--            <a href="#" class="img logo rounded-circle mb-5" style="background-image: url({{asset('/images/logo.jpg')}});"></a>--}}
+
+            <img height=100 class="img logo rounded-circle mb-5" src="{{asset(Auth::user()->photo ? Auth::user()->photo->path: 'https://placehold.it/400x400')}}"  >
+           <ul class="list-unstyled components mb-5">
                 <li class="active">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Patient</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="#">All Patients</a>
+                            <a href="{{route('admin.patient.index')}}">All Patients</a>
                         </li>
                         <li>
-                            <a href="#">Add Patient</a>
+                            <a href="{{route('admin.patient.create')}}">Add Patient</a>
                         </li>
 
                     </ul>
                 </li>
+               <li class="active">
+                   <a href="#psSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Psychiatrist</a>
+                   <ul class="collapse list-unstyled" id="psSubmenu">
+                       <li>
+                           <a href="{{route('admin.psychiatrist.index')}}">All Psychiatrists</a>
+                       </li>
+                       <li>
+                           <a href="{{route('admin.psychiatrist.create')}}">Add Psychiatrist</a>
+                       </li>
+
+                   </ul>
+               </li>
                 <li>
                     <a href="#">About</a>
                 </li>
@@ -52,6 +66,9 @@
                 <li>
                     <a href="#">Contact</a>
                 </li>
+                           <li>
+                               <a href="{{route('person.edit',Auth::user()->id)}}">Profile Information</a>
+                           </li>
             </ul>
 
             <div class="footer">
@@ -91,6 +108,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
+
                     </ul>
                 </div>
             </div>

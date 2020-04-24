@@ -38,6 +38,8 @@ Route::group(['middleware' => ['web']], function () {
 
         return view ('admin.index');
     });
+    Route::resource('/person','Admin');
+    Route::resource('/admin/psychiatrist','AdminPsychiatristController');
     Route::resource('/admin/patient','AdminPatientController');
 
 });
