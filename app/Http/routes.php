@@ -26,18 +26,23 @@ Route::get('/', function () {
 |
 */
 //
+
+
 Route::group(['middleware' => ['web']], function () {
     //
     Route::auth();
+
+
 
     Route::get('/admin',function (){
 
         return view ('admin.index');
     });
+    Route::resource('/admin/patient','AdminPatientController');
 
 });
-
-
-
-
 Route::get('/home', 'HomeController@index');
+
+
+
+

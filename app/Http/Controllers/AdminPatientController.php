@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class AdminUserController extends Controller
+class AdminPatientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,8 @@ class AdminUserController extends Controller
     public function index()
     {
         //
-        return view ('admin.user.index');
+        $patients = User::where('role_id',0)->get();
+        return view ('admin.patient.index',compact('patients'));
     }
 
     /**
