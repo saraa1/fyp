@@ -1,13 +1,20 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Sidebar 01</title>
+    <title>Admin Panel</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+
+    {{-- for datetime picker--}}
+
+
+
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
 <body>
@@ -40,6 +47,46 @@
                        <li>
                            <a href="{{route('admin.psychiatrist.create')}}">Add Psychiatrist</a>
                        </li>
+
+                   </ul>
+               </li>
+               <li class="active">
+                   <a href="#appSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Appointments</a>
+                   <ul class="collapse list-unstyled" id="appSubmenu">
+                       <li>
+                           <a href="{{route('admin.appointment.create')}}">Book Appointment</a>
+                       </li>
+                       <li>
+                           <a href="{{route('admin.psychiatrist.create')}}">Add Psychiatrist</a>
+                       </li>
+
+
+                   </ul>
+               </li>
+               <li class="active">
+                   <a href="#catSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Categories</a>
+                   <ul class="collapse list-unstyled" id="catSubmenu">
+                       <li>
+                           <a href="{{route('admin.category.index')}}">All Categories</a>
+                       </li>
+                       <li>
+                           <a href="{{route('admin.category.create')}}">Add Categories</a>
+                       </li>
+
+
+
+                   </ul>
+               </li>
+               <li class="active">
+                   <a href="#quesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Questionaire</a>
+                   <ul class="collapse list-unstyled" id="quesSubmenu">
+                       <li>
+                           <a href="{{route('admin.questionaire.index')}}">All Questionaire</a>
+                       </li>
+                       <li>
+                           <a href="{{route('admin.questionaire.create')}}">Add Questionaire</a>
+                       </li>
+
 
                    </ul>
                </li>
@@ -108,6 +155,17 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
+                        @if(Auth::check())
+                        <li class="dropdown nav-item">
+                            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out" style="padding-left: 1rem"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                        @endif
 
                     </ul>
                 </div>
@@ -122,5 +180,8 @@
 <script src="{{asset('js/popper.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
+
+
+
 </body>
 </html>

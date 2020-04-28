@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Photo;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -75,6 +76,19 @@ class Admin extends Controller
     public function update(Request $request, $id)
     {
         //
+        $input=$request->all();
+        if($file=$request->file('photo_id')){
+
+            $name= $file->getClientOriginalName();
+            $file->move('images',$name);
+            $photo=Photo::create(['path'=>$name]);
+            $input['photo_id']=$photo->id;
+        }
+
+        $user=User::find($id)->update($input);
+
+        return redirect('/home');
+
     }
 
     /**

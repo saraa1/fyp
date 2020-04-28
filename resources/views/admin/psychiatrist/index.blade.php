@@ -36,7 +36,7 @@
                     <td>
                     <td>
                         <button class="btn btn-info" >
-                            <a href="{{route('admin.patient.edit',$psych->id)}}" style="color: white">
+                            <a href="{{route('admin.psychiatrist.edit',$psych->id)}}" style="color: white">
                                 Edit
                             </a>
                         </button>
@@ -57,7 +57,7 @@
         </table>
     @else
         <h1>
-            No Patient Record Found
+            No Psychiatrist Record Found
         </h1>
     @endif
 @stop

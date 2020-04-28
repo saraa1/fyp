@@ -41,6 +41,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('/person','Admin');
     Route::resource('/admin/psychiatrist','AdminPsychiatristController');
     Route::resource('/admin/patient','AdminPatientController');
+    Route::resource('/admin/appointment','AppointmentController');
+    Route::resource('/admin/category','AdminCategoryController');
+    Route::resource('/admin/questionaire','QuestionaireController');
 
 });
 Route::get('/home', 'HomeController@index');
