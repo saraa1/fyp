@@ -1,22 +1,79 @@
 @extends('layouts.admin')
 @section('content')
 
-
-{!! Form::open(['method'=>'POST','action'=>'QuestionaireController@store']) !!}
-
-<div class="form-group">
-    {!! Form::label('category_id','Title:') !!}
-    {!! Form::select('category_id',[''=>'Select one']+$category,null,['class'=>'form-control']) !!}
-</div>
-<div class="form-group">
-    {!! Form::label('body','Body') !!}
-    {!! Form::textarea('body',null,['class'=>'form-control ','rows'=>3]) !!}
-</div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card-header">
+                    <legend>
+                        Create New Question
+                    </legend>
+                </div>
+                <div class="card-body">
 
 
+                    {!! Form::open(['method'=>'POST','action'=>['QuestionController@store',$questionaire->id]]) !!}
 
-<div class="form-group">
-    {!! Form::submit('Add Questions',['class'=>'btn btn-primary']) !!}
-</div>
-{!! Form::close() !!}
+                    <div class="form-group">
+                        {!! Form::label('question','Question:') !!}
+                        {!! Form::text('question[question]',null,['class'=>'form-control', 'placeholder'=>'Enter Question']) !!}
+                        @if ($errors->has('question.question'))
+                            <span class="text-danger">
+                                        <strong>{{ $errors->first('question.question') }}</strong>
+                            </span>
+                        @endif
+
+                    </div>
+                    <div class="form-group">
+                        <fieldset>
+                            Answers:
+
+                            <div class="form-group">
+                                {!! Form::label('answer1','1.') !!}
+                                {!! Form::text('answers[][answer]',null,['class'=>'form-control', 'placeholder'=>'Enter Choice']) !!}
+                                @if ($errors->has('answers.0.answer'))
+                                    <span class="text-danger">
+                                        <strong>{{ $errors->first('answers.0.answer') }}</strong>
+                            </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('answer2','2.') !!}
+                                {!! Form::text('answers[][answer]',null,['class'=>'form-control', 'placeholder'=>'Enter Choice']) !!}
+                                @if ($errors->has('answers.1.answer'))
+                                    <span class="text-danger">
+                                        <strong>{{ $errors->first('answers.1.answer') }}</strong>
+                            </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('answer3','3.') !!}
+                                {!! Form::text('answers[][answer]',null,['class'=>'form-control', 'placeholder'=>'Enter Choice']) !!}
+                                @if ($errors->has('answers.2.answer'))
+                                    <span class="text-danger">
+                                        <strong>{{ $errors->first('answers.2.answer') }}</strong>
+                            </span>
+                                @endif
+                            </div>
+
+
+                        </fieldset>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        {!! Form::submit('Add Questions',['class'=>'btn btn-primary']) !!}
+                    </div>
+                    {!! Form::close() !!}
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
 @stop

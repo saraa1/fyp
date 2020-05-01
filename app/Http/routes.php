@@ -43,7 +43,17 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('/admin/patient','AdminPatientController');
     Route::resource('/admin/appointment','AppointmentController');
     Route::resource('/admin/category','AdminCategoryController');
-    Route::resource('/admin/questionaire','QuestionaireController');
+    Route::resource('/admin/questionaire','AdminQuestionaireController');
+    Route::get('/questionaire/{questionaire}/questions/create',['as'=>'question.create','uses'=>'QuestionController@create']);
+    Route::post('/questionaire/{questionaire}/questions',['as'=>'question.store','uses'=>'QuestionController@store']);
+    Route::delete('/questionaire/{questionaire}/questions/{question}',['as'=>'question.delete','uses'=>'QuestionController@destroy']);
+
+
+    Route::get('/surveys/{questionaire}-{slug}','SurveyController@show');
+    Route::post('/surveys/{questionaire}-{slug}','SurveyController@store');
+
+    Route::resource('/survey_response','SurveyResponseController');
+
 
 });
 Route::get('/home', 'HomeController@index');

@@ -7,10 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     //
-    protected $fillable=['category_id','body'];
+    protected $fillable=['questionaire_id','question'];
 
-    public function category(){
+    public function answer(){
 
-        return $this->belongsTo('App\Category');
+        return $this->hasMany('App\Answer');
+    }
+
+    public function questionaire(){
+
+        return $this->belongsTo('App\Questionaire');
     }
 }

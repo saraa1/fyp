@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Question;
+use App\Questionaire;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class QuestionaireController extends Controller
+class AdminQuestionaireController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +19,11 @@ class QuestionaireController extends Controller
     public function index()
     {
         //
-        $categories = Category::all();
+        $questionaire = Questionaire::all();
 
 
-        return view ('admin.questions.index',compact('categories'));
+        return view ('admin.questionaire.index',compact('questionaire'));
+
     }
 
     /**
@@ -32,9 +34,8 @@ class QuestionaireController extends Controller
     public function create()
     {
         //
-
         $category= Category::lists('name','id')->all();
-        return view ('admin.questions.create',compact('category'));
+        return view ('admin.questionaire.create',compact('category'));
     }
 
     /**
@@ -46,8 +47,9 @@ class QuestionaireController extends Controller
     public function store(Request $request)
     {
         //
-        Question::create($request->all());
+        Questionaire::create($request->all());
         return redirect('admin/questionaire');
+
     }
 
     /**
@@ -56,13 +58,14 @@ class QuestionaireController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Questionaire $questionaire)
     {
         //
-        $ques = Question::where('category_id',$id)->get();
-        return view ('admin.questions.show',compact('ques'));
+        $questionaire=$questionaire->load('question.answer');
+        return view('admin.questionaire.show',compact('questionaire'));
 
-
+//        $ques = Questionaire::where('category_id',$id)->get();
+//        return view ('admin.questions.show',compact('ques'));
 
     }
 
@@ -95,8 +98,12 @@ class QuestionaireController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Questionaire $questionaire)
     {
         //
+
+        //return redirect()->back();
+
+
     }
 }
