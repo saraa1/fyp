@@ -52,7 +52,18 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/surveys/{questionaire}-{slug}','SurveyController@show');
     Route::post('/surveys/{questionaire}-{slug}','SurveyController@store');
 
+//    Route::get('/survey_response/{id}',['as'=>'survey_response.show','uses'=>'SurveyResponseController@show']);
+
     Route::resource('/survey_response','SurveyResponseController');
+
+    //for remedies
+//   Route::resource('/remedy','RemediesController');
+    Route::get('/questionaire/{questionaire}/remedy/create',['as'=>'remedy.create','uses'=>'RemediesController@create']);
+    Route::post('/questionaire/{questionaire}/remedy',['as'=>'remedy.store','uses'=>'RemediesController@store']);
+    Route::get('/remedy/{remedy}',['as'=>'remedy.show','uses'=>'RemediesController@show']);
+    Route::delete('/remedy/{remedy}',['as'=>'remedy.destroy','uses'=>'RemediesController@destroy']);
+    Route::patch('/remedy/{remedy}',['as'=>'remedy.update','uses'=>'RemediesController@update']);
+    Route::get('/survey/{pdf}/{percentage}', 'SurveyResponseController@pdf');
 
 
 });
