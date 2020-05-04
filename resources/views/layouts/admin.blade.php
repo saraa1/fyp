@@ -51,19 +51,6 @@
                    </ul>
                </li>
                <li class="active">
-                   <a href="#appSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Appointments</a>
-                   <ul class="collapse list-unstyled" id="appSubmenu">
-                       <li>
-                           <a href="{{route('admin.appointment.create')}}">Book Appointment</a>
-                       </li>
-                       <li>
-                           <a href="{{route('admin.psychiatrist.create')}}">Add Psychiatrist</a>
-                       </li>
-
-
-                   </ul>
-               </li>
-               <li class="active">
                    <a href="#catSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Categories</a>
                    <ul class="collapse list-unstyled" id="catSubmenu">
                        <li>
@@ -90,29 +77,20 @@
 
                    </ul>
                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 3</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Portfolio</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
+{{--               <li class="active">--}}
+{{--                   <a href="#remSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Remedies</a>--}}
+{{--                   <ul class="collapse list-unstyled" id="remSubmenu">--}}
+
+{{--                       <li>--}}
+{{--                           <a href="{{route('remedy.create')}}">Add Remedies</a>--}}
+{{--                       </li>--}}
+
+
+{{--                   </ul>--}}
+{{--               </li>--}}
+
+
+
                            <li>
                                <a href="{{route('person.edit',Auth::user()->id)}}">Profile Information</a>
                            </li>
@@ -142,19 +120,11 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav navbar-right  ">
                         <li class="nav-item active">
                             <a class="nav-link" href="#">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Portfolio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>
+
                         @if(Auth::check())
                         <li class="dropdown nav-item">
                             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -169,6 +139,7 @@
 
                     </ul>
                 </div>
+
             </div>
         </nav>
 
