@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class ValidateSurveyRequest extends Request
+class RemedyRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,11 @@ class ValidateSurveyRequest extends Request
     public function rules()
     {
         return [
-            'answer[]' => 'required',
-            'name' => 'required',
-            'email' => 'required'];
+            //
+//            'responses.*.answer_id' => 'required',
+//            'responses.*.question_id' => 'required'
+            'questionaire_id'=>'required',
+            'name'=>'required'
+        ];
     }
 }
