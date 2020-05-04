@@ -17,7 +17,7 @@
                         <b><a href="{{route('admin.questionaire.show',$questionair->id)}}">{{$questionair->category->name}}</a></b>
                     </h4>
                     <p>{{$questionair->body}}</p>
-                 <div class="card-body">
+                 <div class="card-body form-inline">
                         {!! Form::open(['method'=>'GET','action'=>['QuestionController@create',$questionair->id]]) !!}
 
                         <div class="form-group">
@@ -25,6 +25,12 @@
                         </div>
                         {!! Form::close() !!}
 
+                     {!! Form::open(['method'=>'GET','action'=>['RemediesController@create',$questionair->id]]) !!}
+
+                     <div class="form-group ml-2">
+                         {!! Form::submit('Remedies',['class'=>'btn btn-info ']) !!}
+                     </div>
+                     {!! Form::close() !!}
                     </div>
 
                 </div>
