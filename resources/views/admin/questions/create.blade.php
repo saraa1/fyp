@@ -46,15 +46,7 @@
                             </span>
                                 @endif
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('answer3','3.') !!}
-                                {!! Form::text('answers[][answer]',null,['class'=>'form-control', 'placeholder'=>'Enter Choice']) !!}
-                                @if ($errors->has('answers.2.answer'))
-                                    <span class="text-danger">
-                                        <strong>{{ $errors->first('answers.2.answer') }}</strong>
-                            </span>
-                                @endif
-                            </div>
+
 
 
                         </fieldset>
