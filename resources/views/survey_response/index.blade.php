@@ -14,7 +14,10 @@
            <tr>
              <td>{{$response->id}}</td>
              <td>{{$response->survey_id}}</td>
-             <td>{{$response->question_id}}</td>
+               <td>
+                   {{$response->answer->answer}}
+               </td>
+             <td>{{$response->answer_id}}</td>
            </tr>
 
          </tbody>
