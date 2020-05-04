@@ -22,5 +22,11 @@ class Questionaire extends Model
 
         return $this->hasMany('App\Survey');
     }
+    public function remedy(){
+
+        return $this->hasMany('App\Remedies');
+    }
+
+
 
 }
